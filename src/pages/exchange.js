@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import HistoryOrder from '../components/HistoryOrder';
-import MarketHistory from '../components/MarketHistory';
-import MarketNews from '../components/MarketNews';
-import MarketPairs from '../components/MarketPairs';
-import MarketTrade from '../components/MarketTrade';
-import OrderBook from '../components/OrderBook';
+import TokenStatus from '../components/TokenStatus';
+import TokenTrade from '../components/TokenTrade';
 import TradingChart from '../components/TradingChart';
+import WalletChart from '../components/WalletChart';
 import TradingChartDark from '../components/TradingChartDark';
 import { ThemeConsumer } from '../context/ThemeContext';
 
@@ -16,7 +13,7 @@ export default class exchange extends Component {
         <div className="container-fluid mtb15 no-fluid">
           <div className="row sm-gutters">
             <div className="col-sm-12 col-md-3">
-              <MarketPairs />
+              <TokenStatus />
             </div>
             <div className="col-sm-12 col-md-6">
               <ThemeConsumer>
@@ -28,18 +25,14 @@ export default class exchange extends Component {
                   );
                 }}
               </ThemeConsumer>
-              <MarketTrade />
             </div>
-            <div className="col-md-3">
-              <OrderBook />
-              <MarketHistory />
+            <div className="col-sm-12 col-md-3">
+              <TokenTrade />
             </div>
-            <div className="col-md-3">
-              <MarketNews />
-            </div>
-            <div className="col-md-9">
-              <HistoryOrder />
-            </div>
+              <div className="col-sm-12 col-md-12">
+                  <WalletChart>
+                  </WalletChart>
+              </div>
           </div>
         </div>
       </>

@@ -8,7 +8,7 @@ export default function TradingChart() {
         <TradingViewWidget
           symbol="BITSTAMP:BTCUSD"
           theme={Themes.LIGHT}
-          locale="fr"
+          locale="en"
           autosize
         />
       </div>
