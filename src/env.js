@@ -1,7 +1,3 @@
-const OLD_PROD_PLAN_IDS = {
+export const COIN_MARKET_CAP_URL = 'https://coinmarketcap.com/';
 
-};
 
-export default {
-  API_PATH: 'https://api.mastre.io/api/v1'
-};

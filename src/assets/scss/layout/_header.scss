@@ -86,7 +86,7 @@ header .nav-link.btn {
 }
 .header-custom-icon button {
   padding: 0 15px;
-  margin-top: 5px;
+  margin-top: 8px;
 }
 .header-img-icon button {
   padding: 0 0 0 15px;
@@ -271,4 +271,39 @@ header .nav-link.btn {
 }
 .header-img-icon .profile-nav .nav-item .nav-link i {
   margin-right: 15px;
+}
+
+.header-wallet-icon{
+  .wallet {
+    margin-left: 0px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    padding: 8px;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    overflow: hidden;
+    position: relative;
+    height: 44px;
+    cursor: pointer;
+    &.open {
+      background-color: #232a32;
+      border-radius: 16px;
+      -webkit-border-radius: 16px;
+    }
+    .wallet-icon {
+      &:hover {
+        svg path {
+          stroke: #9488f0;
+        }
+      }
+    }
+  }
+
+}
+header.mobile{
+  .navbar{
+    padding: .5em .3em .5em .8em;
+  }
 }

@@ -91,6 +91,7 @@ tbody tr:hover {
 .light-bb,
 .input-group-text {
   border: 1px solid #e0e3eb;
+  background: #f8f8f8;
 }
 .dark-bb {
   border-bottom: 1px solid #2a2e39;
@@ -164,4 +165,38 @@ tbody tr:hover {
 
 .news-details p {
   font-size: 16px;
+}
+.triangle {
+  position: relative;
+  font-size: 12px;
+  line-height: 1.5;
+  padding-left: 13px;
+  display: -webkit-flex;
+  display: flex;
+}
+.triangle.up {
+  color: #46d7ab;
+}
+.triangle.up:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 0;
+  height: 0;
+  border-color: transparent #46d7ab transparent transparent;
+  border-style: solid;
+  border-width: 0 8px 8px 0;
+}
+.triangle.down {
+  color: #ff646d;
+}
+.triangle.down:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5px;
+  border-color: transparent transparent #ff646d;
+  border-style: solid;
+  border-width: 0 0 8px 8px;
 }

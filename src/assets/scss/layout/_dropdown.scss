@@ -1,0 +1,634 @@
+@import '../base/_variables';
+
+.dropdown-search-wrapper {
+  z-index: $z-index-dropdown-search-wrapper;
+  display: block;
+
+  .not-found {
+    padding: 0px 124px 16px 124px;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: $color-sidebar;
+    text-align: center;
+    margin-top: -20px;
+  }
+}
+
+.search.open .dropdown-search-wrapper .dropdown-search::before {
+  content: '';
+  position: absolute;
+  top: 0px;
+  bottom: -1px;
+  left: -1px;
+  right: -1px;
+  background: $gradient-rainbow;
+  border-radius: 0 0 16px 16px;
+  z-index: $z-index-dropdown-search-before;
+}
+
+.dropdown-search {
+  border-radius: 0 0 16px 16px;
+  position: absolute;
+  background-color: $bg-primary;
+  top: 48px;
+  left: 0;
+  display: none;
+  flex-direction: column;
+  z-index: $z-index-dropdown-search;
+  border-top: 1px solid #2d3642;
+  width: 100%;
+  .table tr{
+     background: transparent;
+  }
+  .table td,.table th{
+    color: $color-line;
+    font-size: 16px;
+    border-top: none !important;
+  }
+  .table td.hidden{
+    display: none;
+  }
+  &.show {
+    display: flex;
+  }
+  .dropdown-search-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #2d3642;
+    padding: 12px 16px;
+
+    input {
+      border: none;
+      outline: none;
+      padding-left: 16px;
+      height: 100%;
+      font-size: 20px;
+      line-height: 1.5;
+      color: $white;
+      background-color: transparent;
+    }
+  }
+
+  .dropdown-search-tbody {
+    padding-bottom: 20px;
+  }
+  .dropdown-search-filter {
+    padding: 14px 16px 16px 16px;
+    border-radius: 0 0 16px 16px;
+    background-color: $white;
+    .nav-item.nav-link{
+      border-radius: 3px;
+      &.active {
+        background: #f8f8f8;
+      }
+    }
+  }
+
+  .dropdown-search-table {
+    background-color: $bg-primary;
+    border-radius: 0 0 16px 16px;
+    overflow: hidden;
+    margin-top: -16px;
+    padding-top: 24px;
+    padding-right: 5px;
+  }
+  .dropdown-search-thead,
+  .dropdown-search-trow {
+    .token-favorite {
+      margin-right: 10px;
+      display: flex;
+      width: 18px;
+    }
+    .token-icon {
+      width: 40px;
+      margin-right: 8px;
+      display: flex;
+    }
+    .token-name {
+      width: calc(100% - 66px - 72%);
+      display: flex;
+      .network-bsc {
+        color: #ff8a1f;
+      }
+      f .text-overflow {
+        max-width: 70px;
+      }
+    }
+    .token-volume {
+      display: flex;
+      width: 20%;
+      justify-content: flex-end;
+    }
+
+    .token-liquidity {
+      display: flex;
+      width: 26%;
+      justify-content: flex-end;
+    }
+
+    .token-price {
+      display: flex;
+      width: 19%;
+      justify-content: flex-end;
+    }
+    .token-price-delta {
+      display: flex;
+      width: 9%;
+      margin-top: -8px;
+      padding-left: 8px;
+    }
+  }
+  .dropdown-search-thead {
+    display: flex;
+    font-size: 10px;
+    line-height: 1.5;
+    color: #545c66;
+    padding: 0 24px 5px 24px;
+    &.wallet-head {
+      margin-right: 0px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .token-favorite {
+      width: 38px;
+      margin: 0;
+      margin-right: 11px;
+    }
+
+    .token-icon {
+      width: 0;
+      margin-right: 0;
+    }
+    .token-name {
+      width: calc(100% - 15px - 72%);
+    }
+
+    .row-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+  }
+  .dropdown-search-trow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $white;
+    padding: 4px 24px;
+    cursor: pointer;
+    &:first-child {
+      margin-top: 8px;
+    }
+    &:not(:last-child) {
+      margin-bottom: 4px;
+    }
+    &:hover {
+      .sum-part {
+        font-weight: 400;
+      }
+    }
+
+    .row-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      width: calc(100% - 38px);
+      &.row-wallet {
+        width: 100%;
+      }
+    }
+
+    &:hover {
+      background-color: #191f27;
+    }
+
+    .favorite {
+      svg path {
+        stroke: $red;
+        fill: $red;
+      }
+    }
+
+    .token-icon {
+      display: flex;
+      .token-primary,
+      .token-secondary {
+        display: flex;
+        align-items: center;
+      }
+      .token-secondary {
+        margin-left: -8px;
+        border: 3px solid #1e242c;
+        border-radius: 50%;
+      }
+      svg {
+        width: 32px;
+        height: 32px;
+      }
+    }
+  }
+  .sign {
+    font-weight: 400;
+    color: #6d7986;
+  }
+
+  .sum-part {
+    float: right;
+    text-align: right;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    margin-right: 10px;
+  }
+  .token-price-delta{
+     width: 40px;
+     float: right;
+     margin-top: 6px;
+     margin-left:6px;
+  }
+}
+
+.dropdown-search .unverify {
+  .devider {
+    background-color: $color-line;
+    height: 1px;
+    margin: 35px 20px 25px 20px;
+  }
+
+  .unverify-phrase {
+    padding: 0 15px 10px 55px;
+    display: flex;
+    align-items: center;
+
+    .icon {
+      width: 36px;
+      height: 36px;
+    }
+
+    .phrase {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 12px;
+      line-height: 18px;
+      padding: 14px 21px;
+      border-radius: 8px;
+      background-color: $color-phrase;
+      color: $white;
+      margin-left: 12px;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: -5px;
+        top: 14px;
+        border-right: 6px solid $color-phrase;
+        border-bottom: 9px solid transparent;
+        border-top: 9px solid transparent;
+      }
+    }
+  }
+}
+
+.dropdown-search.wallet-tab {
+  .dropdown-search-thead .token-icon {
+    margin-right: 8px;
+  }
+
+  .dropdown-search-trow {
+    padding: 6px 24px;
+    margin-right: 0;
+  }
+  .dropdown-search-trow:not(:last-child) {
+    margin-bottom: 0px;
+  }
+  .dropdown-search-trow:last-child {
+    padding-bottom: 10px;
+  }
+
+  .token-icon {
+    width: 32px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .token-name {
+    width: 15%;
+    display: flex;
+  }
+
+  .token-balance {
+    width: 25%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .token-value {
+    width: 25%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .token-price {
+    width: 20%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .token-price-delta {
+    width: 8%;
+    display: flex;
+  }
+}
+
+.mobile {
+  .dropdown-search {
+    top: 39px;
+    .select-option {
+      padding: 4px 8px;
+      border-radius: 4px;
+      background-color: #29313a;
+      width: 100%;
+      .option {
+        margin-right: 18px;
+        position: relative;
+
+        .up {
+          position: absolute;
+          top: 11px;
+          right: -21px;
+          height: 5px;
+          transform: rotate(180deg);
+          svg {
+            width: 10px;
+            height: 3px;
+          }
+        }
+      }
+    }
+
+    .dropdown-search-tbody {
+      padding-bottom: 16px;
+    }
+    .unverify {
+      .devider {
+        margin: 0 0 16px;
+      }
+      .unverify-phrase {
+        padding: 0 21px 16px 12px;
+
+        .icon,
+        .icon svg {
+          width: 24px;
+          height: 24px;
+        }
+        .phrase {
+          padding: 8px 16px;
+          font-size: 10px;
+          line-height: 1.5;
+        }
+      }
+    }
+    .simplebar-wrapper {
+      max-height: calc(100vh - 160px);
+    }
+
+    .dropdown-search-thead {
+      padding: 0 16px 8px 16px;
+
+      .token-favorite {
+        width: 32px;
+        margin-right: 0;
+      }
+
+      .row-wrapper {
+        align-items: baseline;
+      }
+
+      .token-name {
+        width: 50%;
+      }
+      .dropdown-options {
+        width: 45%;
+      }
+    }
+    .dropdown-search-trow {
+      padding: 4px 21px 4px 16px;
+
+      &:first-child {
+        margin-top: 0px;
+      }
+
+      .row-wrapper {
+        width: calc(100% - 60px);
+
+        .token-name {
+          width: 30%;
+          display: flex;
+          font-size: 12px;
+          line-height: 18px;
+        }
+
+        .token-option {
+          display: flex;
+          width: 45%;
+
+          .token-volume,
+          .token-liquidity {
+            width: 100%;
+            justify-content: flex-end;
+            .sum-part {
+              font-size: 12px;
+              line-height: 18px;
+              text-align: left;
+            }
+          }
+
+          .token-price {
+            display: flex;
+            width: 65%;
+            .sum-part {
+              display: flex;
+              font-size: 12px;
+              line-height: 18px;
+            }
+
+            .token-price-delta {
+              margin-top: 3px;
+
+              .triangle.down:before {
+                top: 3px;
+                border-width: 0 0 5px 5px;
+              }
+              .triangle.up:before {
+                border-width: 0 5px 5px 0;
+                top: 3px;
+              }
+
+              .triangle {
+                padding-left: 9px;
+              }
+
+              div {
+                display: flex;
+                line-height: 12px;
+                font-size: 8px;
+              }
+            }
+          }
+        }
+      }
+
+      .token-favorite.heart,
+      .token-favorite.heart svg {
+        width: 12px;
+        height: 12px;
+      }
+
+      .token-icon {
+        width: 32px;
+        height: 32px;
+
+        svg,
+        img {
+          width: 24px;
+          height: 24px;
+        }
+
+        .token-border-network .token-border.large:before {
+          width: 6px;
+          height: 6px;
+        }
+      }
+    }
+
+    .dropdown-options {
+      display: flex;
+      position: relative;
+
+      .click-wrapper {
+        width: 120px;
+      }
+
+      .open-drop.select-option {
+        position: relative;
+
+        .drop-options {
+          background: #29313a;
+          position: absolute;
+          padding: 0 8px 4px 8px;
+          width: 100%;
+          border-radius: 0 0 4px 4px;
+          margin-left: -8px;
+          z-index: $z-index-dropdown-options;
+        }
+      }
+    }
+
+    .dropdown-search-table {
+      padding-top: 0;
+    }
+  }
+  .dropdown-search-wrapper .not-found {
+    margin-top: 0;
+    padding: 24px 63px 24px;
+    font-size: 12px;
+    line-height: 1.5;
+
+    span {
+      display: block;
+      text-align: center;
+
+      &:first-child {
+        margin-bottom: 24px;
+      }
+    }
+  }
+
+  .dropdown-search.wallet-tab {
+    .dropdown-search-thead.wallet-head {
+      padding: 8px 16px 8px 24px;
+      align-items: baseline;
+
+      .token-name {
+        width: 25%;
+      }
+
+      .token-blance {
+        width: 20%;
+      }
+      .click-wrapper {
+        display: flex;
+        width: 33%;
+
+        .select-option {
+          position: relative;
+
+          .drop-options {
+            position: absolute;
+            padding: 0 0 4px 8px;
+            margin-left: -8px;
+            border-radius: 0 0 4px 4px;
+            background-color: #29313a;
+            z-index: $z-index-dropdown-options;
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .token-balance {
+      justify-content: flex-end;
+      width: 22%;
+      font-size: 12px;
+      line-height: 18px;
+    }
+    .token-options {
+      display: flex;
+      justify-content: flex-end;
+      width: 45%;
+
+      .token-price,
+      .token-value {
+        width: 100%;
+        font-size: 12px;
+        line-height: 18px;
+        .sum-part {
+          font-size: 12px;
+          line-height: 18px;
+        }
+      }
+
+      .token-price {
+        .sum-price {
+          width: 60%;
+          text-align: right;
+        }
+        .token-price-delta {
+          width: 40%;
+          text-align: left;
+          margin-top: 0;
+        }
+
+        .triangle {
+          font-size: 8px;
+          line-height: 12px;
+          padding-left: 8px;
+        }
+        .triangle.up:before {
+          border-width: 0 5px 5px 0;
+          top: 3px;
+        }
+        .triangle.down:before {
+          border-width: 0 0 5px 5px;
+          top: 3px;
+        }
+      }
+    }
+  }
+}

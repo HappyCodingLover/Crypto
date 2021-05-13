@@ -1,4 +1,6 @@
 import walletReducer from './walletReducer';
+import appReducer from './appReducer';
 export {
-  walletReducer
+  walletReducer,
+  appReducer
 };
