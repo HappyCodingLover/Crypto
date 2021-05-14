@@ -77,7 +77,7 @@ class TokenList extends Component {
                        </td>
                    </tr>
                 })
-            })
+            }
 
 
             </tbody>
