@@ -6,6 +6,12 @@ import { bindActionCreators } from 'redux';
 import * as Actions from './actions/appActions';
 import Index from './pages';
 import {checkMobile} from "./utils";
+import Web3 from 'web3'
+import { Web3ReactProvider } from '@web3-react/core'
+
+function getLibrary(provider) {
+    return new Web3(provider)
+}
 
 class App extends Component {
   constructor(props) {
@@ -21,39 +27,22 @@ class App extends Component {
 
   handleWindowSizeChange = () => {
         const isMobileWidth = checkMobile();
-        console.log(isMobileWidth)
         this.props.actions.setIsMobile(isMobileWidth);
    }
-
-  themeUpdate = ()=>{
-      let theme = this.state.theme === 'light'
-          ? (this.theme = 'dark')
-          : (this.theme = 'light');
-      this.setState((state) => ({
-          theme: theme
-
-      }));
-
-      this.props.actions.updateTheme(theme);
-
-  }
-  componentDidMount = ()=>{
+   componentDidMount = ()=>{
       window.addEventListener('resize', this.handleWindowSizeChange);
       this.handleWindowSizeChange();
   }
+
   render() {
     return (
       <>
         <BrowserRouter>
           <Route component={ScrollToTop} />
-          <ThemeProvider
-            value={{
-              data: this.state,
-              update: this.themeUpdate
-            }}
-          >
-            <Index />
-          </ThemeProvider>
+            <Web3ReactProvider getLibrary={getLibrary}>
+               <Index />
+            </Web3ReactProvider>
+
         </BrowserRouter>
       </>
     );

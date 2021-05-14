@@ -46,6 +46,11 @@
     color: $color-line;
     font-size: 16px;
     border-top: none !important;
+    select{
+     border: 1px solid gray;
+     padding: 4px;
+      outline: none;
+    }
   }
   .table td.hidden{
     display: none;
@@ -83,6 +88,10 @@
       &.active {
         background: #f8f8f8;
       }
+    }
+    .tab-content{
+       max-height: 300px;
+       overflow-y: auto;
     }
   }
 

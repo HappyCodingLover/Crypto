@@ -26,7 +26,7 @@ import ConnectModal from '../components/Wallet/ConnectModal'
             <div className="col-sm-12 col-md-6">
                  <div className="main-chart mb15">
                       <TradingViewWidget
-                          symbol="BTCUSD"
+                          symbol={this.props.selectedToken.symbol? this.props.selectedToken.symbol + "USD":"BTCUSD"}
                           theme={this.props.theme === 'dark'?Themes.DARK:Themes.LIGHT}
                           locale="en"
                           autosize
@@ -55,7 +55,8 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => ({
     isShowProviderDialog: state.walletReducer.get('isShowProviderDialog'),
     walletIsConnected:state.walletReducer.get('isConnected'),
-    theme:state.appReducer.get('theme')
+    theme:state.appReducer.get('theme'),
+    selectedToken: state.walletReducer.get('selectedToken')
 });
 
 export default connect(

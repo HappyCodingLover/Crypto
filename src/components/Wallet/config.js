@@ -5,45 +5,28 @@ import {ReactComponent as TokenPocketWalletIcon} from '../../assets/images/icons
 import {ReactComponent as WalletConnectIcon} from '../../assets/images/icons/walletconnect.svg';
 import {ReactComponent as BinanceWalletIcon} from '../../assets/images/icons/binancechainwallet.svg';
 import {ReactComponent as SafePalWalletIcon} from '../../assets/images/icons/safepalwallet.svg';
-
+import { MetaMask,WalletConnectBsc,BSCConnector} from '../../connector';
 import { ConnectorNames } from "./types";
 
 const connectors  = [
     {
         title: "Metamask",
         icon: MetaMaskIcon,
-        connectorId: ConnectorNames.Injected,
-    },
-    {
-        title: "TrustWallet",
-        icon: TrustWalletIcon,
-        connectorId: ConnectorNames.Injected,
-    },
-    {
-        title: "MathWallet",
-        icon: MathWalletIcon,
-        connectorId: ConnectorNames.Injected,
-    },
-    {
-        title: "TokenPocket",
-        icon: TokenPocketWalletIcon,
-        connectorId: ConnectorNames.Injected,
+        connector: MetaMask
+
     },
     {
         title: "WalletConnect",
         icon: WalletConnectIcon,
-        connectorId: ConnectorNames.WalletConnect,
+        connector: WalletConnectBsc
     },
     {
         title: "Binance Chain Wallet",
         icon: BinanceWalletIcon,
-        connectorId: ConnectorNames.BSC,
+        connector: BSCConnector
     },
-    {
-        title: "SafePal Wallet",
-        icon: SafePalWalletIcon,
-        connectorId: ConnectorNames.Injected,
-    },
+
+
 ];
 
 export default connectors;

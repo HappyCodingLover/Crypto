@@ -17,6 +17,7 @@ class DropdownSearch extends Component {
             upList:[],
             favouriteList:[],
             walletList:[],
+            keyword:'',
             up:{
                 filtered:[]
             },
@@ -37,18 +38,34 @@ class DropdownSearch extends Component {
     componentDidMount(){
 
     }
+    componentDidUpdate(prevProps) {
+
+    }
+    filterTokenList=()=>{
+         var self = this;
+         return this.props.tokens.filter(item=>{
+             return item.symbol.indexOf(self.props.keyword) > -1;
+         });
+
+    }
+    tokenSelected = (token)=>{
+        console.log(token);
+        this.props.actions.setSelectedToken(token);
+        this.props.onSelected();
+    }
     render() {
+
         return <div className={`dropdown-search ${this.props.isActiveSearch ? 'show' : 'none'} ${this.state.filter}`}>
             <div className="dropdown-search-filter">
                 <Tabs defaultActiveKey="up">
                     <Tab eventKey="up" title="Top Values">
-                      <TokenList status={this.state.up} favourite={this.state.favouriteList}/>
+                      <TokenList onClick={this.tokenSelected} filtered={this.filterTokenList()} status={this.state.up} favourite={this.state.favouriteList}/>
                     </Tab>
                     <Tab eventKey="favourite" title="Favourites">
-                        <TokenList status={this.state.favourites} favourite={this.state.favouriteList}/>
+                        <TokenList filtered={[]} status={this.state.favourites} favourite={this.state.favouriteList}/>
                     </Tab>
                     <Tab eventKey="wallet" title="Wallet">
-                        <TokenList status={this.state.wallet} favourite={this.state.favouriteList}/>
+                        <TokenList filtered={[]} status={this.state.wallet} favourite={this.state.favouriteList}/>
                     </Tab>
                 </Tabs>
             </div>

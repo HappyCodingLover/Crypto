@@ -288,8 +288,9 @@ header .nav-link.btn {
     height: 44px;
     cursor: pointer;
     &.open {
-      background-color: #232a32;
+      background-color: white;
       border-radius: 16px;
+      padding: 8px !important;
       -webkit-border-radius: 16px;
     }
     .wallet-icon {
@@ -299,11 +300,28 @@ header .nav-link.btn {
         }
       }
     }
+    .wallet-data {
+      padding: 10px;
+      a {
+        text-decoration: none;
+      }
+    }
   }
 
 }
 header.mobile{
   .navbar{
     padding: .5em .3em .5em .8em;
+  }
+  .header-wallet-icon{
+     .wallet-data{
+        border-radius: 30px;
+        display: none;
+     }
+     .wallet.open{
+        .wallet-icon{
+          display: none;
+        }
+     }
   }
 }

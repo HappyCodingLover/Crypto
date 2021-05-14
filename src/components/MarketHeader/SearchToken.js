@@ -8,24 +8,38 @@ import * as Actions from '../../actions/appActions';
 import OutsideClicker from './OutsideClicker';
 import DropdownSearch from './DropdownSearch'
 import classNames from 'classnames';
-
+import {api} from '../../services/Api';
+import {TOKEN_LIST_URL} from '../../env';
+import {getFormatNumber} from "../../utils";
+import {ReactComponent as Unknown} from "../../assets/images/icons/unknown.svg";
 
 class SearchToken extends Component {
     constructor(props) {
         super(props);
         this.props = props;
         this.state = {
-            tokenKey: '',
+            tokens:[],
+            tokenKeyword: '',
             isActiveSearch: false,
             placeHolder:''
         }
     }
-    tokenKeyChange = (e)=>{
-        this.setState({tokenKey:e.target.value});
+    tokenKeywordChange = (e)=>{
+        this.setState({tokenKeyword:e.target.value});
     }
 
     componentDidMount() {
+       api('get',TOKEN_LIST_URL)
+           .then((res)=>{
+               let tokens = res.data? (res.data.data? res.data.data.cryptoCurrencyList || [] : [] ):[];
+               this.setState({tokens:tokens});
+               if(!this.props.selectedToken.symbol){
+                   this.props.actions.setSelectedToken(tokens[0]);
+               }
+           })
+           .catch(err=>{
 
+           })
     }
     searchShow = () => {
         this.setState({isActiveSearch:true,placeHolder:'Search Market'});
@@ -49,21 +63,18 @@ class SearchToken extends Component {
                             <div className="token-icons">
                                 <div className="token-icon token-border-network bsc">
                                     <div className="token-border large">
-                                        <img className="icon-token"
-                                             src="https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/smartchain/assets/0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c/logo.png"
-                                             alt="WBNB" title="WBNB">
-                                        </img>
+                                        <Unknown />
                                     </div>
                                 </div>
                             </div>
                             <span className="token-name" title="WBNB">
-                                BNB<span className="network-bsc">&nbsp;BSC</span>
+                                {this.props.selectedToken.symbol}<span className="network-bsc"></span>
                             </span>
                         </div>
                         <div className="token-value">
                             <span className="sign">$</span>
-                            <span title="660.0132446315434">660.01</span>
-                            <sup className="triangle index down" title="0.05804898447731538">0.06%</sup>
+                            <span title="660.0132446315434">{getFormatNumber(this.props.selectedToken.quotes?this.props.selectedToken.quotes[2].price:0,2)}</span>
+                            <sup className={`triangle index ${(this.props.selectedToken.quotes && this.props.selectedToken.quotes[2].percentChange24h < 0)?'down':'up'}`}>{getFormatNumber(this.props.selectedToken.quotes?this.props.selectedToken.quotes[2].percentChange24h:0,2)}%</sup>
                         </div>
                     </div>
                     <OutsideClicker clickHide={this.searchHide} isActiveSearch={this.state.isActiveSearch}>
@@ -71,7 +82,7 @@ class SearchToken extends Component {
                             <div className="right-part">
                                 { this.state.isActiveSearch?
                                     <input className="input-search" placeholder={this.state.placeHolder}
-                                           value={this.state.tokenKey}  onChange={this.tokenKeyChange}/> : ''
+                                           value={this.state.tokenKeyword}  onChange={this.tokenKeywordChange}/> : ''
                                 }
                                 <div className="icon-search">
                                     <SearchIcon onClick={this.searchShow} />
@@ -81,11 +92,10 @@ class SearchToken extends Component {
                                 <DropdownSearch
                                     isActiveSearch={this.state.isActiveSearch}
                                     searchHide={this.searchHide}
-                                    debouncedText={this.state.debouncedText}
                                     openProviderMenu={this.openProviderMenu}
-                                    changeFavoriteToken={this.changeFavoriteToken}
-                                    favorites={this.props.favorites}
-                                    setSearchSymbol={this.setSearchSymbol}
+                                    tokens={this.state.tokens}
+                                    keyword={this.state.tokenKeyword}
+                                    onSelected={()=>{this.setState({isActiveSearch:false}) }}
                                 />
                             </div>
                         </React.Fragment>
@@ -102,6 +112,7 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({
     isMobileWidth: state.appReducer.get('isMobileWidth'),
+    selectedToken: state.walletReducer.get('selectedToken')
 });
 
 export default connect(

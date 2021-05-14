@@ -3,7 +3,8 @@ import { fromJS } from 'immutable';
 const initialState = fromJS({
     isConnected:false,
     wallet:{},
-    isShowProviderDialog:false
+    isShowProviderDialog:false,
+    selectedToken: {}
 });
 
 const walletReducer = (state = initialState, action) => {
@@ -13,8 +14,11 @@ const walletReducer = (state = initialState, action) => {
 
     }
     case actionTypes.OPEN_PROVIDER_MENU:{
-      console.log(payload)
+
           return state.set("isShowProviderDialog",payload.status);
+    }
+    case actionTypes.SET_SELECTED_TOKEN:{
+        return state.set("selectedToken",payload.token);
     }
 
     default:

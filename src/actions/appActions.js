@@ -12,3 +12,7 @@ export const openProvierMenu = status =>({
     type: actionTypes.OPEN_PROVIDER_MENU,
     payload: { status }
 });
+export const setSelectedToken = token => ({
+    type: actionTypes.SET_SELECTED_TOKEN,
+    payload: { token }
+});

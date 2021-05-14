@@ -6,52 +6,44 @@ import * as Actions from '../../actions/appActions';
 import {ReactComponent as WalletIcon} from '../../assets/images/icons/wallet.svg';
 import {ReactComponent as AccountIcon} from '../../assets/images/icons/account.svg';
 import classNames from 'classnames';
+import {useWeb3React} from "@web3-react/core";
+import { getShortAccount, getNetworkByChainId } from '../../utils'
 
+export const walletUrls = {
+    eth: 'https://app.zerion.io/',
+    bsc: 'https://app.zerion.io/',
+}
 
-
-class WalletConnectButton extends Component {
-    constructor(props) {
-        super(props);
-        this.props = props;
-        this.state = {
-
-        }
-    }
-
-    componentDidMount() {
-
-    }
-
-    render() {
-        console.log(this.props.isConnected,'isConnected')
-        return (
+function WalletConnectButton (props){
+    const {connector, activate, deactivate, active, chainId, account} = useWeb3React();
+    const networkName = getNetworkByChainId(chainId);
+    return (
             <>
-                  <div className={classNames('wallet',{open:this.props.isConnected})} >
+                  <div className={classNames('wallet',{open:active})} >
                         <div className="wallet-icon">
-                          <WalletIcon onClick={this.props.openProviderMenu}/>
+                          <WalletIcon onClick={props.openProviderMenu}/>
                         </div>
-                       {this.props.isConnected?
-                           (<div className="wallet-data">
-                                <a href="https://app.zerion.io/0xdD65344cF2F2aE024F9dEfAbBD29A15fF8A70Bac/overview"
-                                   target="_blank" rel="noopener noreferrer">0xdD6...0Bac</a>
-                                <div>
+                       {active?
+                           (<><div className="wallet-data">
+                                <a href={`${walletUrls[networkName]}${account}/overview`}
+                                   target="_blank" rel="noopener noreferrer">{getShortAccount(account)}</a>
+                              </div>
                                     <div style={{ borderRadius: 50, overflow: 'hidden',padding: 0, margin: 0, width: 24, height: 24, display: 'inline-block'}}>
-                                       <AccountIcon/>
+                                       <AccountIcon onClick={props.openProviderMenu}/>
                                     </div>
-                                </div>
-                            </div>):''
+
+                            </>):''
                        }
                     </div>
             </>
         );
-    }
+
 }
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Actions, dispatch)
 });
 
 const mapStateToProps = state => ({
-    isConnected: state.walletReducer.get('isConnected'),
     isMobile: state.appReducer.get('isMobileWidth')
 });
 

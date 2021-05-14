@@ -3,8 +3,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../../actions/appActions';
-import {ReactComponent as FavouriteIcon} from '../../assets/images/icons/favorite.svg'
+import {ReactComponent as FavouriteIcon} from '../../assets/images/icons/favorite.svg';
+import {getFormatNumber,getIconToken} from '../../utils'
 import Classnames from 'classnames';
+import IconTokenComponent from "./IconTokenComponent";
+import { ReactComponent as Unknown } from '../../assets/images/icons/unknown.svg'
 
 class TokenList extends Component {
 
@@ -17,8 +20,12 @@ class TokenList extends Component {
     changedViewColumn = (e)=>{
          this.setState({mobileView:e.target.value});
     }
+    getTokenIcon = async (token) => {
+        const tokenIcon = await getIconToken(token,'bsc');
+        return tokenIcon;
+    }
     render() {
-        console.log(this.props)
+
         return <table className="table">
             <thead>
             <tr>
@@ -43,48 +50,36 @@ class TokenList extends Component {
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>
-                    <FavouriteIcon/>
-                </td>
-                <td>
-                    ETH
-                </td>
-                <td className={Classnames('text-right',{hidden:this.props.isMobile && this.state.mobileView!='volume'})}>
-                    <span className="sign">$</span>2,362,941,027</td>
-                <td className={Classnames('text-right',{hidden:this.props.isMobile && this.state.mobileView!='liguidity'})}>
-                    <span className="sign">$</span>421,462,199</td>
-                <td className={Classnames('text-right',{hidden:this.props.isMobile && this.state.mobileView!='price'})}>
-                    <div className="token-price-delta">
-                        <sup className="triangle up ">0.04%</sup>
-                    </div>
-                    <div className="sum-part">
-                        <span className="sign">$</span>1.00
-                    </div>
+            {
+                this.props.filtered.map(item=>{
+                   return <tr onClick={()=>this.props.onClick(item)}>
+                       <td>
+                           <FavouriteIcon/>
+                       </td>
+                       <td>
+                           <Unknown /> {/*<IconTokenComponent IconToken={this.getTokenIcon()} symbol={item.symbol} />*/}
+                           {item.symbol}
+                       </td>
+                       <td className={Classnames('text-right',{hidden:this.props.isMobile && this.state.mobileView!='volume'})}>
+                           <span className="sign">$</span>{getFormatNumber(item.quotes[2].volume24h)}</td>
+                       <td className={Classnames('text-right',{hidden:this.props.isMobile && this.state.mobileView!='liguidity'})}>
+                           <span className="sign">$</span>{getFormatNumber(item.quotes[2].marketCap)}</td>
+                       <td className={Classnames('text-right',{hidden:this.props.isMobile && this.state.mobileView!='price'})}>
+                           <div className="token-price-delta">
+                               <sup className= {`triangle ${(item.quotes && item.quotes[2].percentChange24h < 0) ? 'down' : 'up'}`} >
+                                   {getFormatNumber(item.quotes?item.quotes[2].percentChange24h:0,2)}%
+                               </sup>
+                           </div>
+                           <div className="sum-part">
+                               <span className="sign">$</span>{getFormatNumber(item.quotes[2].price,2)}
+                           </div>
 
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <FavouriteIcon/>
-                </td>
-                <td>
-                    UNI
-                </td>
-                <td className={Classnames('text-right',{hidden:this.props.isMobile && this.state.mobileView!='volume'})}>
-                    <span className="sign">$</span>2,362,941,027</td>
-                <td className={Classnames('text-right',{hidden:this.props.isMobile && this.state.mobileView!='liguidity'})}>
-                    <span className="sign">$</span>462,199</td>
-                <td className={Classnames('text-right',{hidden:this.props.isMobile && this.state.mobileView!='price'})}>
-                    <div className="token-price-delta">
-                        <sup className="triangle down">22.04%</sup>
-                    </div>
-                    <div className="sum-part">
-                        <span className="sign">$</span>3,3209.10
-                    </div>
+                       </td>
+                   </tr>
+                })
+            })
 
-                </td>
-            </tr>
+
             </tbody>
         </table>
     }
