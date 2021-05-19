@@ -1,4 +1,7 @@
 @import '../base/_variables';
+body.dark{
+   color: white;
+}
 .dark,
 .dark header {
   background: #131722;
@@ -527,6 +530,39 @@
     .wallet {
       &.open {
         background-color: #232a32;
+      }
+    }
+  }
+}
+body.dark {
+  .token-trade-container{
+     background-color: $dark-card-bg;
+    .token-trade-type-select {
+      border-bottom: 2px solid $dark-bg;
+      background: #2a2e39;
+      span{
+        color: gray;
+        background: transparent;
+        &.active{
+          color: white;
+          background: $dark-card-bg;
+          border: 1px solid $dark-bg;
+          border-bottom:2px solid $dark-card-bg;
+        }
+      }
+    }
+    .token-trade-box{
+      .token-selection{
+         background: $dark-bg-main;
+        .token-section {
+          div {
+            background: $dark-bg;
+          }
+        }
+         input{
+           color: white;
+           background: $dark-bg-main;
+        }
       }
     }
   }

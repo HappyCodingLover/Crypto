@@ -4,10 +4,10 @@ import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../../actions/appActions';
 import {ReactComponent as FavouriteIcon} from '../../assets/images/icons/favorite.svg';
-import {getFormatNumber,getIconToken} from '../../utils'
+import {numberWithCommas,getFormatNumber} from '../../utils'
 import Classnames from 'classnames';
 import IconTokenComponent from "./IconTokenComponent";
-import { ReactComponent as Unknown } from '../../assets/images/icons/unknown.svg'
+
 
 class TokenList extends Component {
 
@@ -20,10 +20,7 @@ class TokenList extends Component {
     changedViewColumn = (e)=>{
          this.setState({mobileView:e.target.value});
     }
-    getTokenIcon = async (token) => {
-        const tokenIcon = await getIconToken(token,'bsc');
-        return tokenIcon;
-    }
+
     render() {
 
         return <table className="table">
@@ -57,21 +54,21 @@ class TokenList extends Component {
                            <FavouriteIcon/>
                        </td>
                        <td>
-                           <Unknown /> {/*<IconTokenComponent IconToken={this.getTokenIcon()} symbol={item.symbol} />*/}
-                           {item.symbol}
+                           <IconTokenComponent item={item}/>
+                           <span style={{marginLeft:10}}>{item.symbol}</span>
                        </td>
                        <td className={Classnames('text-right',{hidden:this.props.isMobile && this.state.mobileView!='volume'})}>
-                           <span className="sign">$</span>{getFormatNumber(item.quotes[2].volume24h)}</td>
+                           <span className="sign">$</span>{numberWithCommas(getFormatNumber(item.volume24hUSD))}</td>
                        <td className={Classnames('text-right',{hidden:this.props.isMobile && this.state.mobileView!='liguidity'})}>
-                           <span className="sign">$</span>{getFormatNumber(item.quotes[2].marketCap)}</td>
+                           <span className="sign">$</span>{numberWithCommas(getFormatNumber(item.liquidityUSD))}</td>
                        <td className={Classnames('text-right',{hidden:this.props.isMobile && this.state.mobileView!='price'})}>
                            <div className="token-price-delta">
-                               <sup className= {`triangle ${(item.quotes && item.quotes[2].percentChange24h < 0) ? 'down' : 'up'}`} >
-                                   {getFormatNumber(item.quotes?item.quotes[2].percentChange24h:0,2)}%
+                               <sup className= {`triangle ${(item.priceChange24h < 0) ? 'down' : 'up'}`} >
+                                   {getFormatNumber(item?item.priceChange24h:0,2)}%
                                </sup>
                            </div>
                            <div className="sum-part">
-                               <span className="sign">$</span>{getFormatNumber(item.quotes[2].price,2)}
+                               <span className="sign">$</span>{numberWithCommas(getFormatNumber(item.priceUSD,2))}
                            </div>
 
                        </td>

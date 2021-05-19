@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TokenStatus from '../components/TokenStatus';
-import TokenTrade from '../components/TokenTrade';
+import TokenTrade from '../components/TokenTrade/TokenTrade';
 import WalletChart from '../components/WalletChart';
 import TradingViewWidget, { Themes } from 'react-tradingview-widget';
 import {connect} from 'react-redux';
@@ -20,23 +20,23 @@ import ConnectModal from '../components/Wallet/ConnectModal'
       <>
         <div className="container-fluid mtb15 no-fluid">
           <div className="row sm-gutters">
-            <div className="col-sm-12 col-md-3">
+            <div className="col-md-12 col-lg-3">
               <TokenStatus />
             </div>
-            <div className="col-sm-12 col-md-6">
+            <div className="col-md-12 col-lg-6">
                  <div className="main-chart mb15">
-                      <TradingViewWidget
+                   {/*   <TradingViewWidget
                           symbol={this.props.selectedToken.symbol? this.props.selectedToken.symbol + "USD":"BTCUSD"}
                           theme={this.props.theme === 'dark'?Themes.DARK:Themes.LIGHT}
                           locale="en"
                           autosize
-                      />
+                      />*/}
                   </div>
             </div>
-            <div className="col-sm-12 col-md-3">
+            <div className="col-md-12 col-lg-3">
               <TokenTrade />
             </div>
-              <div className="col-sm-12 col-md-12">
+              <div className="col-md-12 col-lg-12">
                   <WalletChart>
                   </WalletChart>
               </div>

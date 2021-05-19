@@ -12,6 +12,7 @@ import {api} from '../../services/Api';
 import {TOKEN_LIST_URL} from '../../env';
 import {getFormatNumber} from "../../utils";
 import {ReactComponent as Unknown} from "../../assets/images/icons/unknown.svg";
+import IconTokenComponent from "./IconTokenComponent";
 
 class SearchToken extends Component {
     constructor(props) {
@@ -31,8 +32,11 @@ class SearchToken extends Component {
     componentDidMount() {
        api('get',TOKEN_LIST_URL)
            .then((res)=>{
-               let tokens = res.data? (res.data.data? res.data.data.cryptoCurrencyList || [] : [] ):[];
+               let tokens = res.data? res.data.data : [] ;
                this.setState({tokens:tokens});
+               tokens.map((token)=>{
+                    if(!token.platform) console.log(token);
+               })
                if(!this.props.selectedToken.symbol){
                    this.props.actions.setSelectedToken(tokens[0]);
                }
@@ -63,7 +67,7 @@ class SearchToken extends Component {
                             <div className="token-icons">
                                 <div className="token-icon token-border-network bsc">
                                     <div className="token-border large">
-                                        <Unknown />
+                                        <IconTokenComponent item={this.props.selectedToken}/>
                                     </div>
                                 </div>
                             </div>
@@ -73,8 +77,8 @@ class SearchToken extends Component {
                         </div>
                         <div className="token-value">
                             <span className="sign">$</span>
-                            <span title="660.0132446315434">{getFormatNumber(this.props.selectedToken.quotes?this.props.selectedToken.quotes[2].price:0,2)}</span>
-                            <sup className={`triangle index ${(this.props.selectedToken.quotes && this.props.selectedToken.quotes[2].percentChange24h < 0)?'down':'up'}`}>{getFormatNumber(this.props.selectedToken.quotes?this.props.selectedToken.quotes[2].percentChange24h:0,2)}%</sup>
+                            <span title="660.0132446315434">{getFormatNumber(this.props.selectedToken?this.props.selectedToken.priceUSD:0,2)}</span>
+                            <sup className={`triangle index ${(this.props.selectedToken && this.props.selectedToken.priceChange24h < 0)?'down':'up'}`}>{getFormatNumber(this.props.selectedToken?this.props.selectedToken.priceChange24h:0,2)}%</sup>
                         </div>
                     </div>
                     <OutsideClicker clickHide={this.searchHide} isActiveSearch={this.state.isActiveSearch}>
