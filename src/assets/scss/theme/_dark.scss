@@ -552,16 +552,39 @@ body.dark {
       }
     }
     .token-trade-box{
-      .token-selection{
-         background: $dark-bg-main;
-        .token-section {
-          div {
-            background: $dark-bg;
+      .token-selection-container {
+        .token-selection {
+          background: $dark-bg-main;
+          .token-section {
+            .token-item {
+              background: $dark-bg;
+              &.fixed {
+                background: $dark-bg-main;
+              }
+
+            }
+            .select-token-widget {
+              background: #181d23;
+              .recent-token {
+                background: $dark-bg;
+
+                &:hover {
+                  background: #2e3740;
+                }
+              }
+              .serached-token-list {
+                .searched-token {
+                  &:hover {
+                    background: #2e3740;
+                  }
+                }
+              }
+            }
           }
-        }
-         input{
-           color: white;
-           background: $dark-bg-main;
+          input {
+            color: white;
+            background: $dark-bg-main;
+          }
         }
       }
     }

@@ -40,34 +40,124 @@
     label{
       display: flex;
     }
-     .token-selection{
-      border-radius: 12px;
-      padding: 10px 12px;
-      background: white;
-      margin-bottom: .5em;
-      display: flex;
-      .token-section{
-        width: 50%;
-        float: left;
-        div {
-          background: #f8f8f8;
-          border-radius: 10px;
-          padding: 8px 12px;
-          display: inline-block;
-          width: 100px;
-          height: 40px;
-        }
-      }
-      input{
-        width: 50%;
-        float: right;
-        outline: none;
-        border: none;
-        color: black;
-        font-size: 20px;
-        text-align: right;
-      }
-    }
+    .token-selection-container {
+         border-radius: 12px;
+         padding: 1px;
+         margin-bottom: .5em;
+         &.input-wrapper{
+           background: linear-gradient(77.45deg, #9488f0 19.97%, #e967c4 55.52%, #82cf8a 89.58%);
+         }
+         .token-selection {
+             position: relative;
+             border-radius: 12px;
+             padding: 10px 12px;
+             background: white;
+
+             display: flex;
+             .token-section {
+               width: 50%;
+               float: left;
+               .token-item {
+                 cursor: pointer;
+                 background: #f8f8f8;
+                 border-radius: 10px;
+                 padding: 4px 12px 4px 6px;
+                 display: inline-block;
+                 &.fixed {
+                   background: white;
+                   i {
+                     display: none;
+                   }
+                 }
+                 svg, img {
+                   padding-right: 5px;
+                   height: 28px;
+                 }
+                 span {
+                   margin-right: 5px;
+                 }
+
+               }
+               .select-token-widget {
+                 position: absolute;
+                 width: 100%;
+                 left: 0px;
+                 top: 50px;
+                 background: #ececec;
+                 padding: 12px;
+                 border-bottom-right-radius: 10px;
+                 border-bottom-left-radius: 10px;
+                 z-index: 100;
+                 .input-wrapper {
+
+                   &.input-rainbow {
+                     padding: 1px;
+                     border-radius: 5px;
+                     background: linear-gradient(77.45deg, #9488f0 19.97%, #e967c4 55.52%, #82cf8a 89.58%);
+                   }
+                 }
+                 .token-input {
+                   width: 100%;
+                   border: none;
+                   outline: none;
+                   height: 40px;
+                   font-size: 16px;
+                   font-weight: normal;
+                   padding: 3px 10px;
+                   border-radius: 5px;
+                 }
+                 svg, img {
+                   padding-right: 5px;
+                   height: 28px;
+                 }
+                 .recent-token {
+                   float: left;
+                   width: calc(33.33% - 5px);
+                   margin-right: 7px;
+                   margin-bottom: 5px;
+                   background: white;
+                   padding: 8px;
+                   border-radius: 10px;
+                   &:last-child {
+                     margin-right: 0;
+                   }
+                   &:hover {
+                     background: #f8f8f8;
+                     cursor: pointer;
+                   }
+
+                 }
+                 .serached-token-list {
+                   padding: 8px;
+                   max-height: 80px;
+                   overflow-y: auto;
+                   overflow-x: hidden;
+                   .searched-token {
+                     padding: 8px;
+                     cursor: pointer;
+                     &:hover {
+                       border-radius: 10px;
+                       background: #f8f8f8;
+                     }
+                   }
+                 }
+               }
+
+             }
+             .number-input {
+               width: 50%;
+               float: right;
+               outline: none;
+               border: none;
+               color: black;
+               font-size: 20px;
+               text-align: right;
+               &:disabled {
+                 background: transparent;
+               }
+             }
+           }
+     }
      .full-width{
        width: 100%;
 

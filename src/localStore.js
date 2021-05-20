@@ -1,5 +1,3 @@
-import { fromJS } from 'immutable';
-
 export const loadState = () => {
   const jsonString = localStorage.getItem('state');
   if (jsonString === null) {
@@ -7,7 +5,7 @@ export const loadState = () => {
   }
   const json = JSON.parse(jsonString);
   return {
-    appReducer: fromJS(json.appReducer),
+    uiConfig:json.uiConfig
   };
 };
 
@@ -15,7 +13,7 @@ export const saveState = state => {
 
   try {
     const toStore = {
-        appReducer: state.appReducer,
+        uiConfig: state.uiConfig,
     };
 
     const serial = JSON.stringify(toStore);
