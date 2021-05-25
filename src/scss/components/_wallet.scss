@@ -1,0 +1,124 @@
+@import '../base/_variables';
+
+@keyframes wallet-gradient-move {
+  from {
+    background-position: -250px center;
+  }
+  to {
+    background-position: 200px center;
+  }
+}
+
+.wallet {
+  display: flex;
+  align-items: center;
+  padding: 6px;
+  margin: 0;
+  background: none center center no-repeat;
+  border-radius: 16px;
+  -webkit-border-radius: 16px;
+  justify-content: space-between;
+  position: relative;
+  height: 44px;
+  transition: all 0.25s ease;
+
+  &--open {
+    background-color: $color-bg-80;
+    margin: 0;
+  }
+
+  &--loading {
+    background-image: linear-gradient(
+      90deg,
+      rgba(35, 42, 50, 0) 0%,
+      rgba(87, 113, 205, 0.8) 52.08%,
+      rgba(35, 42, 50, 0) 100%
+    );
+    background-size: 165px 100%;
+    animation: wallet-gradient-move 1.5s ease infinite;
+
+    .wallet__txn {
+      color: $color-style-purple;
+    }
+  }
+
+  .app--mobile & {
+    padding: 0;
+    margin: 0;
+    height: 40px;
+
+    &--open {
+      background: none;
+    }
+  }
+
+  &__icon {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+
+    & > * {
+      flex: 0 0 auto;
+    }
+
+    &:hover {
+      svg path {
+        stroke: $color-style-purple;
+      }
+    }
+
+    .network {
+      margin: 0 8px 0 6px;
+    }
+
+    &--network-bsc {
+      .network {
+        color: #ff8a1f;
+      }
+
+      .icon {
+        svg path {
+          stroke: #ff8a1f;
+        }
+      }
+    }
+
+    .icon {
+      width: 32px;
+
+      .app--mobile & {
+        width: 24px;
+      }
+    }
+  }
+
+  &__data {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 0;
+    flex: 0 0 auto;
+    transition: all 0.5s;
+    opacity: 0;
+    cursor: pointer;
+
+    &--show {
+      width: auto;
+      opacity: 1;
+    }
+  }
+
+  &__txn {
+    font-size: 14px;
+    line-height: 1;
+    color: $white;
+    margin: 0 8px;
+    text-decoration: none;
+  }
+
+  &__avatar {
+    display: flex;
+    z-index: $z-index-wallet-data;
+  }
+}

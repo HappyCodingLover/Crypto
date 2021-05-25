@@ -1,0 +1,37 @@
+@import '../base/_variables';
+
+.bn-notify-custom.bn-notify-notifications {
+  width: 19.3rem;
+  padding-right: 26px;
+  z-index: $z-index-bn-notify-notifications;
+
+  #el_51c2MS41pY {
+    stroke: #9488f0;
+  }
+
+  @media (max-width: $mobile-threshold) {
+    right: 0 !important;
+    width: 100% !important;
+    padding: 8px !important;
+    top: calc(-100vh + 165px) !important;
+    bottom: unset !important;
+  }
+}
+
+ul > li.bn-notify-custom.bn-notify-notification {
+  background-color: #181d23 !important;
+  padding: 16px 16px 22px 14px;
+}
+
+.bn-notify-notification-info-meta {
+  color: #6d7986;
+}
+.bn-notify-notification-info-message {
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+  color: #ffffff;
+}
+//.bn-notify-notification-close{}

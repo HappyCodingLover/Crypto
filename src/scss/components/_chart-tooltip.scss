@@ -1,0 +1,25 @@
+@import '../base/_variables';
+
+#chartjs-tooltip {
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
+  z-index: $z-index-chart-tooltip;
+  background: #191f27;
+  border-radius: 16px;
+  padding: 16px 16px 16px 24px;
+  font-size: 14px;
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+  }
+  .capitalize {
+    text-transform: capitalize;
+  }
+  .date {
+    color: #6d7986;
+  }
+}

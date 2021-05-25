@@ -1,0 +1,87 @@
+.graph {
+  width: 100%;
+  padding-bottom: 16px;
+  position: relative;
+  flex-grow: 1;
+
+  .chart-loader ~ * {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .up-down-btn {
+    position: absolute;
+    bottom: 13px;
+    right: 0;
+    z-index: $z-index-up-down-button;
+  }
+
+  .TVChartContainer {
+    min-height: 450px;
+    resize: vertical;
+    overflow: auto;
+    display: flex;
+    align-items: stretch;
+    @media (max-width: 1526px) {
+      min-height: 350px;
+      height: 100%;
+    }
+
+    iframe {
+      height: auto !important;
+    }
+
+    @media (min-width: $mobile-threshold) {
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 16px;
+        right: 0;
+        width: 32px;
+        height: 32px;
+        background-image: url(../images/icons/up_down.svg);
+        cursor: ns-resize;
+      }
+    }
+  }
+}
+
+.chart-page {
+  .seriesControlWrapper {
+    padding-right: 10px !important;
+  }
+
+  .group-wWM3zP_M,
+  .group-2JyOhh7Z {
+    background-color: #232a32 !important;
+
+    input,
+    span,
+    div {
+      color: #545c66 !important;
+    }
+  }
+
+  div.chart-toolbar.chart-controls-bar {
+    padding-right: 25px;
+  }
+
+  div.chart-container-border {
+    background-color: #232a32 !important;
+  }
+}
+
+.mobile {
+  .graph {
+    height: calc(100vh - 200px);
+    .TVChartContainer {
+      height: 100% !important;
+    }
+
+    .chart-loader {
+      .animation {
+        height: unset;
+      }
+    }
+  }
+}

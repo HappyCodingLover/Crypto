@@ -1,0 +1,375 @@
+@import '../base/_variables';
+
+.omnibox {
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  background-color: $color-element-input;
+  color: $color-style-white;
+  cursor: pointer;
+  height: 50px;
+  border-radius: 16px;
+
+  position: absolute;
+  z-index: $z-index-search;
+  left: 0;
+  right: 0;
+
+  .app--mobile {
+    height: 40px;
+  }
+
+  & > * {
+    height: 100%;
+  }
+
+  &__token {
+    flex: 1 0 0;
+    height: 100%;
+    opacity: 1;
+    visibility: visible;
+
+    position: relative;
+    z-index: $z-index-dropdown-search-wrapper + 2;
+
+    margin-right: 8px;
+    padding-right: 16px;
+    border-right: 1px $color-bg-60 solid;
+  }
+
+  &__search {
+    flex: 0 0 auto;
+  }
+
+  &-token {
+    padding: 5px 16px 5px 8px;
+
+    font-size: 16px;
+    line-height: 1;
+
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    height: 100%;
+
+    .app--mobile & {
+      font-size: 12px;
+      padding: 4px 8px 4px 4px;
+      margin-right: 4px;
+    }
+
+    &:before {
+      content: '';
+      height: 100%;
+      flex: 0 0 auto;
+      width: 0;
+    }
+
+    .sign {
+      color: $color-element-text;
+    }
+
+    &__ident {
+      display: flex;
+      align-items: center;
+      flex: 1 0 0;
+    }
+
+    &__favourite {
+      margin-right: 8px;
+      padding: 8px;
+      flex: 0 0 auto;
+
+      &--active {
+        svg path {
+          stroke: $color-style-red;
+          fill: $color-style-red;
+        }
+      }
+    }
+
+    &__image {
+      margin-right: 8px;
+      flex: 0 0 auto;
+
+      .app--mobile {
+        margin-right: 4px;
+      }
+    }
+
+    &__name {
+      font-weight: 500;
+      color: $color-style-white;
+      white-space: nowrap;
+      display: flex;
+      flex: 2 1 auto;
+
+      .title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 15em;
+        flex: 0 1 auto;
+        min-width: 2em;
+      }
+
+      .network {
+        flex: 0 0 auto;
+        &--bsc {
+          color: #ff8a1f;
+        }
+      }
+    }
+
+    &__data {
+      margin-left: auto;
+      flex: 0 1 auto;
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+      height: 100%;
+      overflow: hidden;
+      justify-content: flex-end;
+
+      &::before {
+        content: '';
+        height: 100%;
+      }
+    }
+
+    &__value {
+      padding-left: 16px;
+
+      .app--mobile & {
+        padding-left: 4px;
+      }
+    }
+
+    &__delta {
+      margin-left: 8px;
+
+      .app--mobile & {
+        margin-left: 4px;
+      }
+    }
+  }
+
+  &-search {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+
+    z-index: $z-index-dropdown-search-wrapper + 2;
+
+    height: 50px;
+    padding-left: 8px;
+
+    & > * {
+      order: 3;
+      margin-right: 8px;
+    }
+
+    &__hint {
+      opacity: 0;
+      visibility: hidden;
+      position: absolute;
+
+      &--open {
+        position: relative;
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    &__action {
+      background: none;
+      color: $color-style-white;
+      border: 0;
+      border-radius: 16px;
+      padding: 0;
+      cursor: pointer;
+
+      .app--mobile & {
+        margin: 0 4px;
+        .icon {
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
+
+    &__query {
+      margin-left: -8px;
+
+      border: 0;
+      padding: 0 0 0 8px;
+      height: 100%;
+      width: 102px;
+
+      background-color: transparent;
+      font-size: 12px;
+      line-height: 1;
+      color: $white;
+      opacity: 1;
+      visibility: visible;
+
+      &::placeholder {
+        color: $color-element-text;
+      }
+
+      @media screen and (max-width: 1280px) {
+        width: 0;
+        opacity: 0;
+        margin-right: -8px;
+      }
+    }
+  }
+
+  .app--mobile & {
+    height: 40px;
+    border-radius: 20px;
+    transition: none;
+
+    &--open {
+      position: fixed;
+      left: 8px;
+      top: 8px;
+      right: 8px;
+      width: auto;
+    }
+
+    .close-market {
+      display: none;
+    }
+
+    &-search {
+      height: 40px;
+    }
+  }
+
+  &--open {
+    width: 900px;
+
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+
+    &::before {
+      content: '';
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      bottom: 0px;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: -1;
+    }
+  }
+
+  &--open & {
+    &__token {
+      opacity: 0;
+      visibility: hidden;
+      flex: 0 0 0;
+      padding-left: 0;
+      padding-right: 0;
+      margin: 0;
+      border: 0;
+    }
+
+    &__search {
+      flex: 1 0 0;
+    }
+
+    &-search {
+      & > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: -1px;
+        top: -1px;
+        right: -1px;
+        bottom: -1px;
+        border-radius: 16px 16px 0 0;
+        background: linear-gradient(90deg, rgba(96, 70, 255, 1) 0%, rgba(34, 212, 159, 1) 100%);
+        z-index: 0;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 16px 16px 0 0;
+        background: $color-element-input;
+        z-index: 0;
+      }
+
+      &__query {
+        flex: 1 0 0;
+        opacity: 1;
+        visibility: visible;
+
+        .app--desktop & {
+          opacity: 0;
+          animation: omnibox-query-fadein 0.5s forwards ease;
+        }
+      }
+
+      &__action {
+        &--submit {
+          order: 0;
+
+          .app--mobile & {
+            margin: 0 8px 0 4px;
+          }
+
+          .app--desktop & {
+            padding-left: 4px;
+            transform: translateX(24px);
+            opacity: 0;
+            animation: omnibox-submit-slide 0.5s 0.05s forwards ease;
+          }
+        }
+      }
+
+      &__hint {
+        opacity: 1;
+        visibility: visible;
+        position: relative;
+
+        &--open {
+          opacity: 0;
+          visibility: hidden;
+          position: absolute;
+        }
+      }
+    }
+  }
+}
+
+@keyframes omnibox-submit-slide {
+  from {
+    transform: translateX(24px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes omnibox-query-fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

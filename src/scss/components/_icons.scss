@@ -1,0 +1,74 @@
+.icon-token {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.modal-verify .icon-token {
+  width: 36px;
+  height: 36px;
+}
+.tooltip-svg {
+  display: flex;
+  cursor: pointer;
+  .fill {
+    fill: #ffffff;
+  }
+  .stroke {
+    stroke: #ffffff;
+  }
+}
+.dex-sign {
+  width: 12px;
+  height: 12px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &.plus {
+    &:before {
+      content: '';
+      position: absolute;
+      background-color: $green;
+      width: 12px;
+      height: 2px;
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      background-color: $green;
+      height: 12px;
+      width: 2px;
+    }
+  }
+  &.minus {
+    &:before {
+      content: '';
+      position: absolute;
+      background-color: $red;
+      width: 12px;
+      height: 2px;
+    }
+  }
+  &.up {
+    &:before {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 8px 8px 0;
+      border-color: transparent $green transparent transparent;
+    }
+  }
+  &.down {
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0px;
+      border-style: solid;
+      border-width: 0 0 8px 8px;
+      border-color: transparent transparent $red transparent;
+    }
+  }
+}

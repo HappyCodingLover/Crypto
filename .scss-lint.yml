@@ -1,0 +1,15 @@
+scss_files: 'scss/**/*.scss'
+
+exclude:
+  - scss/global/_flags.scss
+
+linters:
+  # Can't be bothered to set this up for now
+  PropertySortOrder:
+    enabled: false
+  # We use important to override bootstrap from CSS modules which seems a legit use
+  ImportantRule:
+    enabled: false
+  # This one just seems silly
+  LeadingZero:
+    enabled: false

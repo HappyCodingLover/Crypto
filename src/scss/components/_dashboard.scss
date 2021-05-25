@@ -1,0 +1,253 @@
+@import '../base/_variables';
+
+.dashboard {
+  background-color: #232a32;
+  height: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  position: relative;
+
+  .animation,
+  .overlay {
+    height: 100%;
+    position: absolute;
+  }
+
+  &--mobile {
+    flex-flow: column;
+    height: 100%;
+  }
+
+  &--mobile & {
+    &__body {
+      overflow: hidden;
+      position: relative;
+      flex: 1 0 0;
+    }
+  }
+
+  & > * {
+    flex: 0 0 auto;
+    transition: all 0.25s ease;
+    opacity: 1;
+    visibility: visible;
+    width: auto;
+  }
+
+  &__main {
+    flex: 1 0 0;
+
+    &.close {
+      flex: 0 0 0;
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  &__sidebar {
+    &.close {
+      flex-basis: 0;
+      opacity: 0;
+      visibility: hidden;
+    }
+    &.open {
+      flex: 1 0 0;
+    }
+
+    &--left {
+    }
+    &--right {
+    }
+
+    .sidebar {
+      &__wrapper {
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+  }
+
+  & > :empty {
+    display: none;
+  }
+
+  &__panel {
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+    display: none;
+    overflow: auto;
+
+    &.react-tabs__tab-panel--selected {
+      display: block;
+    }
+
+    & > * {
+      max-width: 100%;
+    }
+
+    &--main {
+      padding: 0;
+    }
+  }
+}
+
+.main {
+  height: 100%;
+  position: relative;
+
+  &__wrapper {
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: stretch;
+    justify-content: flex-start;
+
+    & > * {
+      flex: 0 0 auto;
+    }
+  }
+
+  .app--desktop & {
+    &__footer {
+      margin-top: auto;
+    }
+  }
+
+  .app--mobile & {
+    .graph {
+      height: 100%;
+    }
+    &__body {
+      flex: 1 0 0;
+    }
+  }
+
+  &--hide {
+    display: none;
+  }
+}
+
+.buy-sell-bottom {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 16px;
+  overflow: auto;
+  z-index: $z-index-buy-sell-bottom;
+  background: $bg-mobile-buy-sell-modal;
+  margin-top: auto;
+}
+
+.app--mobile .dashboard {
+  .main {
+    &__footer {
+      padding: 0 16px 16px;
+    }
+  }
+
+  .sidebar {
+    width: 100%;
+    margin: 0;
+
+    &__toggle {
+      display: none;
+    }
+  }
+
+  .main-screen {
+    position: relative;
+  }
+
+  .sidebar-hide-button {
+    display: none;
+  }
+
+  .react-tabs {
+    width: 100%;
+  }
+
+  .sidebar-wrapper {
+    width: 100%;
+  }
+
+  .sidebar-wrapper .sidebar {
+    width: 100%;
+  }
+
+  .react-tabs__tab-list {
+    display: flex;
+    margin-bottom: 0;
+    border-bottom: none;
+    justify-content: space-between;
+    background-color: #181d23;
+
+    li {
+      display: flex;
+      width: 25%;
+      justify-content: center;
+      padding: 9px 8px;
+
+      .inner-tab {
+        display: block;
+        text-align: center;
+      }
+
+      .icon-tab {
+        width: 28px;
+        height: 28px;
+        margin-bottom: 2px;
+        margin: auto;
+        cursor: pointer;
+      }
+
+      .title {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 18px;
+      }
+    }
+  }
+
+  .option {
+    color: #6d7986;
+  }
+
+  .react-tabs__tab--selected {
+    background: unset;
+    color: #fff;
+  }
+
+  .mobile-buy-sell-container {
+    background: $bg-button-color;
+    border-radius: 16px;
+    height: 56px;
+    column-count: 2;
+    column-gap: 0;
+    position: relative;
+    padding: 6px 0;
+    text-align: center;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: normal;
+    width: auto;
+
+    .mobile-buy-sell-button {
+      line-height: 40px;
+      cursor: pointer;
+
+      &.buy {
+        color: $green;
+        border-right: 1px solid #1f262f;
+      }
+
+      &.sell {
+        color: $red;
+      }
+    }
+  }
+}

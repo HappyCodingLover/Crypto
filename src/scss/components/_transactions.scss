@@ -1,0 +1,101 @@
+.transactions {
+  .sign {
+    color: #6d7986;
+  }
+  .transactions-thead {
+    .sold,
+    .bought {
+      padding-right: 50px;
+    }
+  }
+  .dex {
+    width: 5%;
+    padding-right: 5px;
+  }
+  .delta {
+    width: 3%;
+    font-size: 1em;
+    &:before {
+      position: relative;
+      left: 12px;
+    }
+  }
+  .trade {
+    width: 15%;
+  }
+  .sold,
+  .bought {
+    width: 20%;
+    position: relative;
+    .token-name {
+      width: 50px;
+      color: #6d7986;
+    }
+  }
+  .account {
+    width: 14%;
+  }
+  .icon {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+  }
+  .time {
+    width: 13%;
+    display: flex;
+    justify-content: flex-start;
+  }
+  .dex,
+  .trade,
+  .sold,
+  .bought,
+  .account {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .transactions-header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    &-title {
+      font-size: 20px;
+      line-height: 1.5;
+      padding-top: 8px;
+    }
+
+    &-wrapper {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      padding-right: 60px;
+    }
+    &-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .group-button-purple {
+        margin-right: 30px;
+      }
+    }
+  }
+  .transactions-content {
+    overflow-x: hidden;
+    height: 100%;
+    .empty {
+      display: flex;
+      justify-content: center;
+      margin-top: 45px;
+    }
+  }
+
+  .transactions-footer {
+    height: auto;
+  }
+  .transactions-content,
+  .transactions-footer {
+    width: 100%;
+  }
+}

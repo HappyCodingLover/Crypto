@@ -1,0 +1,261 @@
+@import '../base/_variables';
+
+.header {
+  background-color: $color-bg-100;
+  padding: 7px 8px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  z-index: $z-index-header;
+  height: 64px;
+
+  & > * {
+    margin: 0 8px;
+    flex: 0 0 auto;
+  }
+
+  @media (max-width: 1400px) {
+    & > * {
+      margin-left: 6px;
+    }
+
+    & > :first-child {
+      margin-left: 8px;
+    }
+  }
+
+  & > :last-child {
+    margin-right: 0;
+  }
+
+  .app--mobile & {
+    height: 56px;
+    padding: 8px 4px;
+
+    & > * {
+      margin: 0 4px;
+    }
+
+    &--provider,
+    &--settings {
+      justify-content: space-between;
+    }
+
+    &__personal {
+      grid-template-columns: auto auto;
+      grid-gap: 12px;
+      margin: 0 8px;
+    }
+
+    .switch-currency {
+      display: none;
+    }
+  }
+
+  &__omnibox {
+    flex: 1 0 0;
+    max-width: #{900px + 16px};
+    position: relative;
+    height: 100%;
+
+    .header--provider &,
+    .header--settings & {
+      display: none;
+    }
+
+    @media (min-width: 1280.1px) and (max-width: 1900px) {
+      max-width: 720px;
+    }
+
+    @media (max-width: 1400px) {
+      max-width: 540px;
+    }
+  }
+
+  &__overview {
+    display: grid;
+    grid-gap: 16px;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    margin-right: 12px;
+
+    @media (max-width: 1400px) {
+      padding: 0;
+      grid-gap: 12px;
+    }
+  }
+
+  &__personal {
+    margin-left: auto;
+    display: grid;
+    grid-template-columns: 103px 32px auto;
+    grid-gap: 16px;
+    align-items: center;
+
+    font-size: 12px;
+    line-height: 1;
+
+    .header--provider &,
+    .header--settings & {
+      display: none;
+    }
+  }
+
+  &-personal {
+    &__currency {
+      grid-column: 1;
+    }
+
+    &__action {
+      grid-column: 2;
+    }
+
+    &__wallet {
+      grid-column: 3;
+    }
+  }
+
+  a.logo {
+    display: flex;
+    position: relative;
+    align-items: center;
+
+    .app--desktop & {
+      z-index: $z-index-header-logo;
+    }
+
+    .logo__icon {
+      width: 40px;
+      height: 40px;
+      background: $color-bg-80;
+      border-radius: 50%;
+
+      .app--mobile & {
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    .logo__text {
+      margin-left: 12px;
+      width: 116px;
+
+      .app--desktop & {
+        @media (max-width: 1400px) {
+          display: none;
+        }
+      }
+
+      .app--mobile & {
+        width: 100px;
+      }
+    }
+  }
+
+  &__settings {
+    width: 24px;
+  }
+
+  &-transactions {
+    &__title {
+      color: $color-element-text;
+      font-size: 12px;
+      font-weight: normal;
+      line-height: 1;
+      display: block;
+      margin-bottom: 8px;
+    }
+    &__value {
+      line-height: 1;
+
+      .sum {
+        font-weight: 700;
+        font-size: 20px;
+      }
+
+      .delta {
+        margin-left: 4px;
+      }
+    }
+  }
+
+  &__action {
+    background: none;
+    color: $color-style-white;
+    border: 0;
+    border-radius: 16px;
+    padding: 0;
+    cursor: pointer;
+
+    .icon:not(:last-child) {
+      margin-right: 8px;
+    }
+
+    &:hover {
+      .icon {
+        svg path {
+          stroke: $bg-button-active-hover;
+        }
+      }
+    }
+  }
+
+  &__button {
+    background: $color-bg-80;
+    color: $color-style-white;
+    border: 0;
+    border-radius: 16px;
+    padding: 12px;
+    cursor: pointer;
+    transition: all 0.25s;
+
+    &:hover {
+      background-color: $bg-primary-hover;
+    }
+
+    .icon ~ .caption {
+      margin-left: 8px;
+    }
+
+    @media (max-width: 1400px) {
+      .icon ~ .caption {
+        display: none;
+      }
+    }
+  }
+
+  &__version {
+    color: $color-element-text;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 40px;
+  }
+
+  .close-mobile-screen {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    z-index: $z-index-close-mobile-screen;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+
+    svg {
+      width: 24px;
+      height: 24px;
+
+      path {
+        stroke: #6d7986;
+      }
+    }
+
+    &:hover {
+      svg {
+        path {
+          stroke: $purple;
+        }
+      }
+    }
+  }
+}

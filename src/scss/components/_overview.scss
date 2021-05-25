@@ -1,0 +1,151 @@
+.overview {
+  background: $color-bg-90;
+  color: $white;
+  border-radius: 16px;
+  width: 600px;
+  position: relative;
+  padding: 24px;
+  display: grid;
+  grid-gap: 24px;
+  grid-auto-rows: max-content;
+
+  .app--mobile & {
+    padding: 16px;
+    min-height: 100%;
+    width: 100%;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+
+    .app--mobile & {
+      justify-content: center;
+      margin-bottom: -8px;
+    }
+
+    .icon-row,
+    .icon-row svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .copy:hover svg path {
+      stroke: $purple !important;
+    }
+    .copy {
+      cursor: pointer;
+    }
+  }
+
+  &__token-icon {
+    display: flex;
+    align-items: center;
+
+    .token-name {
+      margin-left: 16px;
+      width: 100px;
+    }
+
+    .icon-token {
+      width: 36px;
+      height: 36px;
+    }
+  }
+
+  &__token-hash {
+    display: flex;
+    align-items: center;
+
+    .row-token-icon {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+    }
+
+    .icon-explorer {
+      width: 32px;
+      height: 32px;
+    }
+
+    .address {
+      font-size: 16px;
+      line-height: 24px;
+      margin: 0 8px;
+      color: $purple;
+    }
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &__contacts {
+    margin: 0 24px;
+
+    .app--mobile & {
+      margin: 0 16px;
+    }
+  }
+
+  &__market {
+    position: relative;
+    padding: 24px;
+    border-radius: 16px;
+    background-color: $color-bg-70;
+
+    .app--mobile & {
+      grid-template-columns: 1fr;
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .overview__row {
+      display: block;
+    }
+
+    .delta {
+      display: inline-block;
+      &:not(:first-child) {
+        margin-left: 10px;
+        vertical-align: top;
+      }
+    }
+
+    &_empty {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+      line-height: 27px;
+      color: $color-sidebar;
+    }
+  }
+
+  &__rank {
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 7px 12px;
+    background-color: $color-bg-100;
+    color: $color-style-white;
+    border-radius: 8px;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+
+    .app--mobile & {
+      font-size: 10px;
+      line-height: 1;
+      padding: 7px 8px;
+      border-radius: 4px;
+    }
+  }
+
+  &__button {
+    margin: 0 auto;
+    width: 128px;
+    border-radius: 8px;
+  }
+}

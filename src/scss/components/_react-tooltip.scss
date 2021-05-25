@@ -1,0 +1,21 @@
+.__react_component_tooltip {
+  position: fixed;
+  opacity: 0 !important;
+
+  &.show {
+    opacity: 1 !important;
+    width: 172px;
+    border-radius: 6px !important;
+    padding: 16px !important;
+    font-size: 12px !important;
+    line-height: 1.5;
+    &.tooltip__copy {
+      width: auto;
+      text-align: center;
+      padding: 8px !important;
+    }
+    &.tooltip__badge {
+      width: 165px;
+    }
+  }
+}

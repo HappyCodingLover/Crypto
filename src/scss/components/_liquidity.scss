@@ -1,0 +1,217 @@
+.liquidity-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 16px 0;
+
+  .liquidity-title {
+    font-size: 15px;
+    line-height: 22px;
+  }
+
+  .title {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+.liquidity-table {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+
+  [data-simplebar] {
+    max-height: none !important;
+    height: 100%;
+
+    .simplebar-wrapper {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+    }
+
+    .simplebar-vertical {
+      bottom: 8px;
+    }
+  }
+
+  .liquidity-thead,
+  .liquidity-trow {
+    text-decoration: none;
+    color: $white;
+  }
+
+  .liquidity-thead {
+    padding-bottom: 9px;
+    border-bottom: 1px solid #323c49;
+    color: #6d7986;
+    font-size: 10px;
+    padding: 0 16px 8px;
+    line-height: 15px;
+  }
+
+  .liquidity-thead,
+  .liquidity-trow {
+    justify-content: space-between;
+    display: flex;
+
+    span.name,
+    .sign,
+    .time {
+      color: $color-sidebar;
+    }
+    .sign-math {
+      position: relative;
+      width: 12px;
+      display: flex;
+      margin: auto;
+    }
+
+    .amount-value {
+      width: 25%;
+      display: flex;
+      flex-direction: column;
+      padding-right: 2px;
+
+      div {
+        justify-content: flex-end;
+        display: flex;
+      }
+    }
+
+    .amount-symbol {
+      width: 15%;
+      display: flex;
+      flex-direction: column;
+
+      div {
+        justify-content: flex-start;
+        display: flex;
+      }
+    }
+
+    .total {
+      width: 24%;
+      justify-content: flex-end;
+      display: flex;
+    }
+
+    .emoji {
+      display: flex;
+      width: 12%;
+      margin-top: -3px;
+      justify-content: flex-end;
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    .time {
+      width: 21%;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  .liquidity-trow {
+    padding: 10px 16px;
+    font-size: 12px;
+    line-height: 18px;
+    margin: 0;
+
+    &.up .sign-math {
+      &:before {
+        content: '';
+        position: absolute;
+        background-color: $green;
+        width: 12px;
+        height: 2px;
+        top: -1px;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        background-color: $green;
+        height: 12px;
+        width: 2px;
+        top: -6px;
+        left: 5px;
+      }
+    }
+    &.down .sign-math {
+      &:before {
+        content: '';
+        position: absolute;
+        background-color: $red;
+        width: 12px;
+        height: 2px;
+        top: -1px;
+      }
+    }
+
+    &:hover {
+      background-color: #191f27;
+      cursor: pointer;
+    }
+
+    &.up:hover {
+      color: $green;
+    }
+
+    &.down:hover {
+      color: $red;
+    }
+  }
+  .simplebar-content {
+    overflow-x: hidden;
+  }
+  .simplebar-track.simplebar-horizontal {
+    display: none;
+  }
+}
+
+.liquidity-table,
+.transactions-table {
+  .fade-enter.liquidity-tbody,
+  .fade-enter.transactions-tbody {
+    opacity: 0;
+    .right & {
+      transform: translateX(100%);
+    }
+    .left & {
+      transform: translateX(-100%);
+    }
+  }
+  .fade-enter-active.liquidity-tbody,
+  .fade-enter-active.transactions-tbody {
+    opacity: 1;
+    .right &,
+    .left & {
+      transform: translateX(0%);
+    }
+  }
+  .fade-exit.liquidity-tbody,
+  .fade-exit.transactions-tbody {
+    opacity: 1;
+    .right &,
+    .left & {
+      transform: translateX(0%);
+    }
+  }
+  .fade-exit-active.liquidity-tbody,
+  .fade-exit-active.transactions-tbody {
+    opacity: 0;
+    .right & {
+      transform: translateX(-100%);
+    }
+    .left & {
+      transform: translateX(100%);
+    }
+  }
+  .fade-enter-active.liquidity-tbody,
+  .fade-enter-active.transactions-tbody,
+  .fade-exit-active.liquidity-tbody,
+  .fade-exit-active.transactions-tbody {
+    transition: opacity 400ms, transform 400ms;
+  }
+}

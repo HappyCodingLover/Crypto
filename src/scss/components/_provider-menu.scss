@@ -1,0 +1,138 @@
+@import '../base/_variables';
+
+.provider-menu {
+  padding: 32px 24px;
+
+  .app--mobile & {
+    overflow: auto;
+    height: 100%;
+  }
+
+  .content {
+    width: 272px;
+    margin: auto;
+  }
+
+  .title-modal {
+    width: 272px;
+    margin: 0 auto 24px;
+  }
+
+  .disconnect {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-style-white;
+    width: 150px;
+    height: 48px;
+    font-size: 18px;
+    line-height: 1;
+    font-weight: 500;
+    border-radius: 16px;
+    margin: 24px auto 0 auto;
+    cursor: pointer;
+    border-radius: 8px;
+    background-color: $color-style-red;
+
+    transition: all 0.25s ease;
+
+    &:hover {
+      background-color: $color-hover-red;
+    }
+  }
+
+  .provider-menu-list {
+    display: flex;
+    margin: -16px 0 0;
+    flex-flow: column;
+    align-items: stretch;
+    button {
+      border: 0;
+      padding: 12px 24px;
+      margin: 16px 0 0;
+      border-radius: 8px;
+      transition: all 0.25s ease;
+      background-color: $color-bg-70;
+      color: $color-element-text-light;
+      justify-content: flex-start;
+
+      font-size: 16px;
+      line-height: 1.5;
+
+      height: 64px;
+
+      &:hover {
+        background-color: $color-element-hover-btn;
+        color: $color-style-white;
+      }
+
+      &.bsc .logo {
+        position: relative;
+        &:before {
+          content: 'BSC';
+          position: absolute;
+          top: -6px;
+          right: -14px;
+          font-size: 11px;
+          color: $orange;
+        }
+      }
+      &:hover {
+        color: $white;
+        background-color: #455161;
+        cursor: pointer;
+      }
+      &.active {
+        background-color: #181d23;
+        .details {
+          .name {
+            color: $white;
+          }
+        }
+      }
+      .logo {
+        display: flex;
+        margin-right: 20px;
+        width: 40px;
+        height: 40px;
+
+        svg {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+      .details {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        .account {
+          font-size: 10px;
+          text-align: left;
+        }
+      }
+    }
+  }
+  .error {
+    margin: 16px;
+    padding: 8px 16px;
+    background: linear-gradient(104.04deg, #2d10ff 0%, #ff0000 100%);
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: left;
+    border-radius: 8px;
+    color: $color-style-white;
+  }
+
+  .disclaimer {
+    font-size: 10px;
+    line-height: 1.6;
+    color: $color-element-text-light;
+    margin: 24px auto 0;
+    text-align: center;
+
+    a {
+      color: $purple;
+    }
+  }
+}

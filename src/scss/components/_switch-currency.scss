@@ -1,0 +1,47 @@
+@import '../base/_variables';
+
+.switch-currency {
+  background: $color-bg-80;
+  border-radius: 16px;
+  border: 4px $color-bg-80 solid;
+  display: flex;
+  position: relative;
+  &:before {
+    content: '';
+    position: absolute;
+    background-color: #374250;
+    border-radius: 13px;
+    width: 48px;
+    height: 36px;
+    transition: all 0.2s ease;
+  }
+  &.usd {
+    &:before {
+      transform: translateX(0);
+    }
+  }
+  &.eth {
+    &:before {
+      transform: translateX(48px);
+    }
+  }
+  button {
+    width: 48px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1;
+    color: $color-style-white;
+    display: inline-block;
+    cursor: pointer;
+    background: none;
+    z-index: $z-index-switch-currency-button;
+  }
+
+  &.hide {
+    display: none;
+  }
+}

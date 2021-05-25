@@ -1,0 +1,55 @@
+@import '../base/_variables';
+
+.overlay-modal {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: scroll;
+  padding: 20px 0;
+  z-index: $z-index-overlay-modal;
+}
+.content-modal {
+  outline: none;
+  border-radius: 16px;
+  color: $white;
+  position: relative;
+  margin: auto;
+
+  background-color: #1e242c;
+}
+.close-modal {
+  display: flex;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: $z-index-close-modal;
+  width: 32px;
+  height: 32px;
+  background-color: #2d3642;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+
+  &:hover {
+    background-color: $color-element-btn-hover;
+  }
+
+  &.light {
+    background-color: $bg-modal-button-hover;
+  }
+}
+.title-modal {
+  font-size: 20px;
+  line-height: 1.5;
+  text-align: center;
+  margin-bottom: 45px;
+  color: $white;
+}

@@ -1,0 +1,52 @@
+.side-filter {
+  background: $color-bg-80;
+  border-radius: 16px;
+
+  padding: 16px;
+
+  display: flex;
+  flex-flow: column;
+  align-items: stretch;
+
+  & > * {
+    flex: 0 0 auto;
+  }
+
+  width: 360px;
+
+  &-blur {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: all 0.3s ease;
+    z-index: 3;
+  }
+
+  &__body {
+    display: flex;
+    flex: 1 0 0;
+    align-items: stretch;
+    flex-flow: column;
+    overflow: auto;
+    margin-right: -8px;
+    padding-right: 8px;
+  }
+  &__header {
+    margin-bottom: 16px;
+  }
+  &__footer {
+    margin-top: 16px;
+  }
+  &__badge {
+    position: absolute;
+    left: 16px;
+    top: 0;
+  }
+  &__submit {
+    max-width: 130px;
+    margin: 0 auto;
+  }
+}
