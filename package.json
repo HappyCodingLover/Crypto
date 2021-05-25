@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack serve --hot --host 0.0.0.0 --config=webpack.dev.config.js --mode development",
+    "start": "webpack serve --hot --host 0.0.0.0 --config=webpack.dev.config.js --mode development",
     "build": "cross-env NODE_ENV=production webpack  --config=webpack.prod.config.js --mode production"
   },
   "author": "jsgrowing315",
