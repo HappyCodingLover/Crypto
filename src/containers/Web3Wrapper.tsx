@@ -40,7 +40,7 @@ const Web3Wrapper = () => {
       const { priceUSD, symbol } = currentToken
       document.title = `$${financialFormat(priceUSD)} ${replaceWrapperTokenToToken(
         symbol
-      )} | DexGuru `
+      )} | Casper`
 
       if (params.token !== currentToken.id) {
         history.push(`/token/${currentToken.id}`)
